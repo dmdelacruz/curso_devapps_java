@@ -56,4 +56,13 @@ public class Users {
         this.team = team;
         return this;
     }
+
+    public Usertipe getUsertipe() {
+        return usertipe;
+    }
+
+    public Users setUsertipe(Usertipe usertipe) {
+        this.usertipe = usertipe;
+        return this;
+    }
 }

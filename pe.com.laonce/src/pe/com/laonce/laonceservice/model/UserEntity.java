@@ -25,22 +25,23 @@ public class UserEntity extends BaseEntity {
         return findByCriteria("");
     }
 
-    public Region findById(int id) {
+    public Users findById(int id) {
         String sql = "id = " + String.valueOf(id);
-        List<Region> regions = findByCriteria(sql);
+        List<Users> regions = findByCriteria(sql);
         return regions.isEmpty() ? null : regions.get(0);
     }
 
-    public boolean create(Region region) {
-        return updateByCriteria("INSERT INTO regions(region_id, region_name) " +
-                "VALUES("+ String.valueOf(region.getId()) + ", " +
-                "'" + region.getName() + "'"+")");
+    public boolean create(Users user) {
+        return updateByCriteria("INSERT INTO users(ID_USERS, PASSWORD,EMAIL,ID_TIPE,ID_TEAM) " +
+                "VALUES("+ String.valueOf(user.getId_users()) + ", " +
+                "'" + user.getPassword() + "' , '"+"'"+user.getEmail()+"', "+user.getUsertipe()
+                +", "+ user.getTeam()+")");
     }
 
-    public boolean update(Region region) {
-        return updateByCriteria("UPDATE regions SET region_name = '" +
-        region.getName() + "' WHERE region_id = " +
-                String.valueOf(region.getId()));
+    public boolean update(Users users) {
+        return updateByCriteria("UPDATE users SET ID_USERS = '" +
+        users.getPassword()+"' " + " WHERE ID_USERS = " +
+                users.getId_users());
     }
     private boolean updateByCriteria(String sql) {
         try {
@@ -58,10 +59,16 @@ public class UserEntity extends BaseEntity {
         try {
             ResultSet rs = getConnection().createStatement().executeQuery(sql);
             while(rs.next()) {
-                Users.add((new Users()).setId(rs.getInt("ID"))
-                .setPassword(rs.getString("PASSWORD")).setEmail(rs.getString("EMAIL"))
-                .usertipeEntity(findById());
-            }
+                Users.add(
+                new Users(rs.getString("PASSWORD"),
+                          rs.getString("EMAIL"),
+                          UsertipeEntity.findById(rs.getInt("ID_TIPE")),
+                        )
+
+                );
+
+
+                }
         } catch (SQLException e) {
             e.printStackTrace();
         }

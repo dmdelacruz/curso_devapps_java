@@ -56,6 +56,12 @@ public class TeamEntity extends BaseEntity {
 
         return teams;
     }
+    public Team findById(int id) {
+        String sql = "id = " + String.valueOf(id);
+        List<Team> team = findByCriteria(sql);
+        return team.isEmpty() ? null : team.get(0);
+    }
+
 
 
 }
