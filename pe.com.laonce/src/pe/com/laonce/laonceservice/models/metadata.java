@@ -1,4 +1,4 @@
-package pe.com.laonce.laonceservice.model;
+package pe.com.laonce.laonceservice.models;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package pe.com.laonce.laonceservice.model;
+package pe.com.laonce.laonceservice.models;
 
 /**
  * Created by rmelgarl on 15/07/2017.
