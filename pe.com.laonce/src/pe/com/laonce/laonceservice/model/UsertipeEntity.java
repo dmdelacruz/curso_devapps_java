@@ -1,5 +1,6 @@
 package pe.com.laonce.laonceservice.model;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -9,6 +10,18 @@ import java.util.List;
  * Created by rmelgarl on 15/07/2017.
  */
 public class UsertipeEntity extends BaseEntity {
+
+    public UsertipeEntity() {
+        super();
+        setTableName("usertipe");
+    }
+
+    public UsertipeEntity(Connection connection) {
+        super(connection);
+        setTableName("usertipe");
+    }
+
+
 
     private List<Usertipe> findByCriteria(String criteria) {
         List<Usertipe> usertipe = new ArrayList<>();
@@ -23,6 +36,7 @@ public class UsertipeEntity extends BaseEntity {
         }
         return usertipe;
     }
+
 
     public Usertipe findById(int id) {
         String sql = "ID_USERTIPE = " + String.valueOf(id);

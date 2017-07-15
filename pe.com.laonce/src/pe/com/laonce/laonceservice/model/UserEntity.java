@@ -21,15 +21,15 @@ public class UserEntity extends BaseEntity {
         setTableName("USER");
     }
 
-    public List<Users> findAll() {
+  /*  public List<Users> findAll() {
         return findByCriteria("");
     }
 
     public Users findById(int id) {
         String sql = "id = " + String.valueOf(id);
-        List<Users> regions = findByCriteria(sql);
-        return regions.isEmpty() ? null : regions.get(0);
-    }
+        List<Users> user = findByCriteria(sql);
+        return user.isEmpty() ? null : user.get(0);
+    }*/
 
     public boolean create(Users user) {
         return updateByCriteria("INSERT INTO users(ID_USERS, PASSWORD,EMAIL,ID_TIPE,ID_TEAM) " +
@@ -52,7 +52,7 @@ public class UserEntity extends BaseEntity {
         return false;
     }
 
-    public List<Users> findByCriteria(String criteria, UsertipeEntity usertipeEntity, TeamEntity teamEntity ) {
+    /* public List<Users> findByCriteria(String criteria, UsertipeEntity usertipeEntity, TeamEntity teamEntity ) {
         List<Users> Users = new ArrayList<>();
         String sql = getDefaultStatement() +
                 (criteria.isEmpty() ? "" : " WHERE " + criteria);
@@ -62,7 +62,7 @@ public class UserEntity extends BaseEntity {
                 Users.add(
                 new Users(rs.getString("PASSWORD"),
                           rs.getString("EMAIL"),
-                          UsertipeEntity.findById(rs.getInt("ID_TIPE")),
+                          UserEntity.findById(rs.getString("ID_TIPE"))
                         )
 
                 );
@@ -74,5 +74,5 @@ public class UserEntity extends BaseEntity {
         }
         return Users;
     }
-
+*/
 }
